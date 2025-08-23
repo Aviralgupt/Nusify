@@ -1,0 +1,120 @@
+{
+  "available_voices": {
+    "default": {
+      "name": "Default Voice",
+      "description": "Standard text-to-speech voice",
+      "gender": "neutral",
+      "language": "en",
+      "speed": 1.0,
+      "pitch": 0,
+      "energy": 1.0
+    },
+    "pop_female": {
+      "name": "Pop Female",
+      "description": "Bright, energetic female pop voice",
+      "gender": "female",
+      "language": "en",
+      "speed": 1.1,
+      "pitch": 2,
+      "energy": 1.2,
+      "style": "pop"
+    },
+    "pop_male": {
+      "name": "Pop Male",
+      "description": "Smooth, melodic male pop voice",
+      "gender": "male",
+      "language": "en",
+      "speed": 0.9,
+      "pitch": -2,
+      "energy": 1.1,
+      "style": "pop"
+    },
+    "rock_male": {
+      "name": "Rock Male",
+      "description": "Powerful, gritty male rock voice",
+      "gender": "male",
+      "language": "en",
+      "speed": 0.8,
+      "pitch": -3,
+      "energy": 1.5,
+      "style": "rock"
+    },
+    "country_female": {
+      "name": "Country Female",
+      "description": "Warm, twangy female country voice",
+      "gender": "female",
+      "language": "en",
+      "speed": 0.95,
+      "pitch": 1,
+      "energy": 1.0,
+      "style": "country"
+    },
+    "jazz_male": {
+      "name": "Jazz Male",
+      "description": "Smooth, soulful male jazz voice",
+      "gender": "male",
+      "language": "en",
+      "speed": 0.85,
+      "pitch": -1,
+      "energy": 0.9,
+      "style": "jazz"
+    },
+    "classical_female": {
+      "name": "Classical Female",
+      "description": "Elegant, refined female classical voice",
+      "gender": "female",
+      "language": "en",
+      "speed": 0.9,
+      "pitch": 0,
+      "energy": 0.8,
+      "style": "classical"
+    },
+    "rap_male": {
+      "name": "Rap Male",
+      "description": "Fast, rhythmic male rap voice",
+      "gender": "male",
+      "language": "en",
+      "speed": 1.3,
+      "pitch": -1,
+      "energy": 1.4,
+      "style": "rap"
+    },
+    "indie_female": {
+      "name": "Indie Female",
+      "description": "Unique, alternative female indie voice",
+      "gender": "female",
+      "language": "en",
+      "speed": 1.0,
+      "pitch": 1,
+      "energy": 0.9,
+      "style": "indie"
+    },
+    "soul_female": {
+      "name": "Soul Female",
+      "description": "Rich, emotional female soul voice",
+      "gender": "female",
+      "language": "en",
+      "speed": 0.95,
+      "pitch": 2,
+      "energy": 1.1,
+      "style": "soul"
+    }
+  },
+  "voice_categories": {
+    "pop": ["pop_female", "pop_male"],
+    "rock": ["rock_male"],
+    "country": ["country_female"],
+    "jazz": ["jazz_male"],
+    "classical": ["classical_female"],
+    "rap": ["rap_male"],
+    "indie": ["indie_female"],
+    "soul": ["soul_female"]
+  },
+  "default_voice": "default",
+  "supported_languages": ["en"],
+  "voice_parameters": {
+    "speed_range": [0.5, 2.0],
+    "pitch_range": [-12, 12],
+    "energy_range": [0.5, 2.0]
+  }
+}
