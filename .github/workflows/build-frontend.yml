@@ -1,19 +1,11 @@
-name: Deploy to GitHub Pages
+name: Build Frontend
 
 on:
-  # Temporarily disabled until build issues are resolved
-  # push:
-  #   branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -36,6 +28,8 @@ jobs:
           ls -la
           echo "Frontend directory contents:"
           ls -la frontend/
+          echo "Package.json contents:"
+          cat frontend/package.json
       
       - name: Install dependencies
         working-directory: ./frontend
@@ -43,6 +37,8 @@ jobs:
           echo "Installing dependencies in $(pwd)"
           npm install
           echo "Dependencies installed successfully"
+          echo "Node modules installed:"
+          ls -la node_modules/ | head -10
       
       - name: Build
         working-directory: ./frontend
@@ -52,22 +48,11 @@ jobs:
           echo "Build completed successfully"
           echo "Build directory contents:"
           ls -la build/
+          echo "Build static files:"
+          ls -la build/static/
       
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: frontend/build
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Build success
+        run: |
+          echo "🎉 Frontend build completed successfully!"
+          echo "The build process works correctly."
+          echo "Next step: Enable GitHub Pages in repository settings"
