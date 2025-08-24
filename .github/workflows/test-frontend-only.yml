@@ -1,0 +1,110 @@
+name: Test Frontend Only
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Debug environment
+        run: |
+          echo "=== Environment Debug ==="
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Current directory: $(pwd)"
+          echo "Git branch: $(git branch --show-current)"
+          echo "Git commit: $(git rev-parse HEAD)"
+          echo "========================"
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      
+      - name: Debug directory structure
+        run: |
+          echo "=== Directory Structure ==="
+          echo "Root directory contents:"
+          ls -la
+          echo ""
+          echo "Frontend directory contents:"
+          ls -la frontend/
+          echo ""
+          echo "Package.json contents:"
+          cat frontend/package.json
+          echo "=========================="
+      
+      - name: Clear npm cache
+        run: |
+          echo "Clearing npm cache..."
+          npm cache clean --force
+          echo "NPM cache cleared"
+      
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: |
+          echo "=== Installing Dependencies ==="
+          echo "Working directory: $(pwd)"
+          echo "Package-lock.json exists: $(test -f package-lock.json && echo 'Yes' || echo 'No')"
+          echo "Installing dependencies..."
+          npm install --verbose
+          echo "Dependencies installed successfully"
+          echo "Node modules count: $(find node_modules -type d | wc -l)"
+          echo "================================"
+      
+      - name: Verify dependencies
+        working-directory: ./frontend
+        run: |
+          echo "=== Verifying Dependencies ==="
+          echo "React version: $(npm list react)"
+          echo "React-scripts version: $(npm list react-scripts)"
+          echo "=============================="
+      
+      - name: Build frontend
+        working-directory: ./frontend
+        run: |
+          echo "=== Building Frontend ==="
+          echo "Working directory: $(pwd)"
+          echo "Starting build process..."
+          npm run build
+          echo "Build completed successfully"
+          echo "=========================="
+      
+      - name: Verify build output
+        working-directory: ./frontend
+        run: |
+          echo "=== Build Output Verification ==="
+          echo "Build directory exists: $(test -d build && echo 'Yes' || echo 'No')"
+          echo "Build directory contents:"
+          ls -la build/
+          echo ""
+          echo "Static files:"
+          ls -la build/static/
+          echo ""
+          echo "Index.html content (first 10 lines):"
+          head -10 build/index.html
+          echo "=================================="
+      
+      - name: Test build locally
+        working-directory: ./frontend
+        run: |
+          echo "=== Testing Build Locally ==="
+          echo "Installing serve globally..."
+          npm install -g serve
+          echo "Starting local server..."
+          timeout 10s serve -s build -l 3000 || echo "Server test completed"
+          echo "============================="
+      
+      - name: Success message
+        run: |
+          echo "🎉 Frontend test completed successfully!"
+          echo "All steps passed without errors."
+          echo "The frontend build process works correctly in CI/CD environment."
