@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Music, Mic, Sparkles, Download, Play, Users, Zap } from 'lucide-react';
+import { Music, Mic, Sparkles, Play, Users, Zap } from 'lucide-react';
 
 const Home = () => {
   const features = [

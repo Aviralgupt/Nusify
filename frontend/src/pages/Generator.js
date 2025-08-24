@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Music, Mic, Download, Play, Pause, Loader2, Sparkles } from 'lucide-react';
+import { Music, Mic, Download, Loader2, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import VoiceSelector from '../components/VoiceSelector';
