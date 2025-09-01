@@ -27,6 +27,67 @@ voice_cloner = VoiceCloner()
 audio_mixer = AudioMixer()
 lyrics_processor = LyricsProcessor()
 
+@app.route('/', methods=['GET'])
+def home():
+    """Home page with instructions"""
+    return """
+    <html>
+    <head>
+        <title>Nusify AI Music Generator</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+            .container { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; }
+            h1 { text-align: center; margin-bottom: 30px; }
+            .api-list { background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; margin: 20px 0; }
+            .endpoint { margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; }
+            .method { color: #4CAF50; font-weight: bold; }
+            .url { color: #FFD700; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🎵 Nusify AI Music Generator</h1>
+            <p>Welcome to Nusify! Your AI-powered lyrics to song generator is running successfully.</p>
+            
+            <div class="api-list">
+                <h2>📡 Available API Endpoints:</h2>
+                <div class="endpoint">
+                    <span class="method">GET</span> <span class="url">/api/health</span> - Health check
+                </div>
+                <div class="endpoint">
+                    <span class="method">POST</span> <span class="url">/api/analyze-mood</span> - Analyze lyrics mood
+                </div>
+                <div class="endpoint">
+                    <span class="method">POST</span> <span class="url">/api/generate-music</span> - Generate background music
+                </div>
+                <div class="endpoint">
+                    <span class="method">POST</span> <span class="url">/api/clone-voice</span> - Clone voice for lyrics
+                </div>
+                <div class="endpoint">
+                    <span class="method">POST</span> <span class="url">/api/create-song</span> - Create complete song
+                </div>
+                <div class="endpoint">
+                    <span class="method">GET</span> <span class="url">/api/available-voices</span> - Get available voices
+                </div>
+                <div class="endpoint">
+                    <span class="method">GET</span> <span class="url">/api/available-genres</span> - Get available genres
+                </div>
+            </div>
+            
+            <h2>🚀 Next Steps:</h2>
+            <ol>
+                <li><strong>Start the Frontend:</strong> Open a new terminal and run:
+                    <br><code>cd frontend && npm install && npm start</code></li>
+                <li><strong>Access the Web Interface:</strong> The frontend will be available at <code>http://localhost:3000</code></li>
+                <li><strong>Test the API:</strong> Use the endpoints above to create songs from lyrics</li>
+            </ol>
+            
+            <p><strong>Status:</strong> ✅ Backend server is running successfully on port 5000</p>
+        </div>
+    </body>
+    </html>
+    """
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
