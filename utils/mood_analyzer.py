@@ -24,7 +24,7 @@ class MoodAnalyzer:
             self.emotion_classifier = pipeline(
                 "text-classification",
                 model="j-hartmann/emotion-english-distilroberta-base",
-                return_all_scores=True
+                top_k=None
             )
         except Exception as e:
             logger.warning(f"Could not load emotion classifier: {e}")

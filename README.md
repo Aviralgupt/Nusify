@@ -31,6 +31,21 @@ Transform your lyrics into complete songs with AI-generated background music and
 - FFmpeg (for audio processing)
 
 ### Quick Start (Local Development)
+
+**Option 1: Automated Setup (Recommended)**
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd Nusify
+
+# Run the automated setup script
+python setup.py
+
+# Start the application
+python start.py
+```
+
+**Option 2: Manual Setup**
 ```bash
 # Clone the repository
 git clone <your-repo-url>
@@ -39,13 +54,18 @@ cd Nusify
 # Install Python dependencies
 pip install -r requirements.txt
 
+# Install FFmpeg (required for audio processing)
+# Windows: choco install ffmpeg
+# Conda: conda install -c conda-forge ffmpeg
+# See setup_ffmpeg.md for detailed instructions
+
 # Install Node.js dependencies
 cd frontend
 npm install
+cd ..
 
 # Start the backend
-cd ..
-python app.py
+python start.py
 
 # Start the frontend (in new terminal)
 cd frontend

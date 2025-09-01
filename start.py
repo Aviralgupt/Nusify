@@ -25,7 +25,7 @@ def check_dependencies():
         import pydub
         import transformers
         import torch
-        import TTS
+        # TTS import removed - not used in current implementation
         logger.info("✅ All required dependencies are available")
         return True
     except ImportError as e:
